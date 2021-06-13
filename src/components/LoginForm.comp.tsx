@@ -1,5 +1,5 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React from 'react'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 export const LoginForm = ({ setCredentials, username, password }: any) => {
   return (
     <Container>
@@ -10,10 +10,17 @@ export const LoginForm = ({ setCredentials, username, password }: any) => {
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" value={username} onChange={(event) => setCredentials({
-                  username: event.target.value,
-                  password
-              })}/>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={username}
+                onChange={(event) =>
+                  setCredentials({
+                    username: event.target.value,
+                    password
+                  })
+                }
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -21,10 +28,17 @@ export const LoginForm = ({ setCredentials, username, password }: any) => {
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" value={password} onChange={(event) => setCredentials({
-                  username,
-                  password: event.target.value
-              })}/>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(event) =>
+                  setCredentials({
+                    username,
+                    password: event.target.value
+                  })
+                }
+              />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
@@ -36,5 +50,5 @@ export const LoginForm = ({ setCredentials, username, password }: any) => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}

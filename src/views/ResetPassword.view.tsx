@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Jumbotron } from "react-bootstrap";
-import { LoginForm } from "../components/LoginForm.comp";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { onLogin } from "./login.api";
+import React, { useState } from 'react'
+import { Jumbotron } from 'react-bootstrap'
+import { LoginForm } from '../components/LoginForm.comp'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { onLogin } from './login.api'
 
 export const ResetPassword = () => {
   const [{ username, password }, setCredentials] = useState({
-    username: "",
-    password: "",
-  });
+    username: '',
+    password: ''
+  })
   const login = async (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("dsafasdf");
+    event.preventDefault()
+    console.log('dsafasdf')
     const response = await onLogin({
       username,
-      password,
-    });
-  };
+      password
+    })
+  }
   return (
     <Container>
       <Row>
@@ -33,7 +33,7 @@ export const ResetPassword = () => {
                 onChange={(event) =>
                   setCredentials({
                     username: event.target.value,
-                    password,
+                    password
                   })
                 }
               />
@@ -48,7 +48,7 @@ export const ResetPassword = () => {
                 onChange={(event) =>
                   setCredentials({
                     username,
-                    password: event.target.value,
+                    password: event.target.value
                   })
                 }
               />
@@ -61,5 +61,5 @@ export const ResetPassword = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}

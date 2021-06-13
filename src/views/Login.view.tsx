@@ -1,35 +1,35 @@
-import React, { useState } from "react";
-import { Jumbotron } from "react-bootstrap";
-import { LoginForm } from "../components/LoginForm.comp";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { onLogin } from "./login.api";
-import { useHistory } from "react-router";
+import React, { useState } from 'react'
+import { Jumbotron } from 'react-bootstrap'
+import { LoginForm } from '../components/LoginForm.comp'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { onLogin } from './login.api'
+import { useHistory } from 'react-router'
 
 export const Login = () => {
   const [{ username, password }, setCredentials] = useState({
-    username: "",//Change soon
-    password: "",
-  });
-  const history = useHistory();
+    username: '', //Change soon
+    password: ''
+  })
+  const history = useHistory()
   const handleOnSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!username || !password) {
-      alert("Fill up all the form");
+      alert('Fill up all the form')
     }
     // dispatch(loginPending());
     //TODO call api to submit the form
     try {
-      const isAuth = await onLogin({ username, password });
-      console.log(isAuth);
+      const isAuth = await onLogin({ username, password })
+      console.log(isAuth)
       // if (isAuth === false) {
       //   // return dispatch(loginFail(isAuth.status));
       // }
-     
-      history.push("/dashboard");
+
+      history.push('/dashboard')
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   return (
     <Container>
       <Row>
@@ -46,7 +46,7 @@ export const Login = () => {
                 onChange={(event) =>
                   setCredentials({
                     username: event.target.value,
-                    password,
+                    password
                   })
                 }
               />
@@ -61,7 +61,7 @@ export const Login = () => {
                 onChange={(event) =>
                   setCredentials({
                     username,
-                    password: event.target.value,
+                    password: event.target.value
                   })
                 }
               />
@@ -74,5 +74,5 @@ export const Login = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
