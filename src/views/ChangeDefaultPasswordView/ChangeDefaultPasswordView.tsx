@@ -1,23 +1,36 @@
-import React, { useState } from 'react'
-import { Jumbotron } from 'react-bootstrap'
-import { LoginForm } from '../components/LoginForm.comp'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { onLogin } from './login.api'
+import queryString from 'query-string'
 
-export const ResetPassword = () => {
+import { onLogin } from '../login.api'
+import { isValidGuid } from '../../helpers/TypeHelpers'
+import UnauthorizedPanel from '../../components/UnauthorizedPanel'
+
+const ChangeDefaultPasswordView = (props: any) => {
   const [{ username, password }, setCredentials] = useState({
     username: '',
     password: ''
   })
+  const [isAuthorized, setIsAuthorized] = useState(false)
+
+  useEffect(() => {
+    const { token } = queryString.parse(props.location.search)
+
+    setIsAuthorized(isValidGuid(token as string))
+  }, [])
+
   const login = async (event: React.FormEvent) => {
     event.preventDefault()
-    console.log('dsafasdf')
-    const response = await onLogin({
+
+    await onLogin({
       username,
       password
     })
   }
-  return (
+  
+  return !isAuthorized ? (
+    <UnauthorizedPanel />
+  ) : (
     <Container>
       <Row>
         <Col>
@@ -63,3 +76,5 @@ export const ResetPassword = () => {
     </Container>
   )
 }
+
+export default ChangeDefaultPasswordView

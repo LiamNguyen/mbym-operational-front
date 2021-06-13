@@ -10,5 +10,5 @@ export const onLogin = async (data: Credentials) => {
     url: "http://localhost:7001/api/new-user",
     data,
   };
-  const {data:response} = await Axios.request(requestConfig)
+  await Axios.request(requestConfig)
 };

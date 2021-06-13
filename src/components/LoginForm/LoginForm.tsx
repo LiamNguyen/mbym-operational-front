@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-export const LoginForm = ({ setCredentials, username, password }: any) => {
+
+const LoginForm = ({ setCredentials, username, password }: any) => {
   return (
     <Container>
       <Row>
@@ -52,3 +53,5 @@ export const LoginForm = ({ setCredentials, username, password }: any) => {
     </Container>
   )
 }
+
+export default LoginForm

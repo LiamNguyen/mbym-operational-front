@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Jumbotron } from 'react-bootstrap'
-import { LoginForm } from '../components/LoginForm.comp'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+
 import { onLogin } from './login.api'
 import { useHistory } from 'react-router'
 
