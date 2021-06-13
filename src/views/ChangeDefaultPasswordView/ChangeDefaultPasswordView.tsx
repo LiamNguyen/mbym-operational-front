@@ -17,7 +17,7 @@ const ChangeDefaultPasswordView = (props: any) => {
     const { token } = queryString.parse(props.location.search)
 
     setIsAuthorized(isValidGuid(token as string))
-  }, [])
+  }, [props.location.search])
 
   const login = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -27,7 +27,7 @@ const ChangeDefaultPasswordView = (props: any) => {
       password
     })
   }
-  
+
   return !isAuthorized ? (
     <UnauthorizedPanel />
   ) : (
