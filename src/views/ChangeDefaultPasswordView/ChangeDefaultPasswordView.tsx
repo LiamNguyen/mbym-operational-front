@@ -28,9 +28,9 @@ const ChangeDefaultPasswordView = (props: any) => {
   // ) : (
   return (
     <DefaultForm 
-    setCredentials={setCredentials}
-    username={username}
-    password={password}
+    // setCredentials={setCredentials}
+    // username={username}
+    // password={password}
     />
   )
 }

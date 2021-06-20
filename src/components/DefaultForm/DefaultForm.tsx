@@ -4,45 +4,42 @@ import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
 import { TextField } from '@material-ui/core'
 
-import { onLogin } from '../../views/login.api'
+import { Credentials, onLogin } from '../../views/login.api'
 
 import './styles.scss'
-const DefaultForm = ({ setCredentials, username, password }: any) => {
+const DefaultForm = () => {
   const validationSchema = yup.object({
-    username: yup.string().required().max(10)
+    username: yup.string().required().max(30),
+    // newPassword: yup.string().required('Password is required'),
+    // reNewPassword: yup.string()
+    //    .oneOf([yup.ref('password'), null], 'Passwords must match')
   })
-  const login = async (event: React.FormEvent) => {
-    event.preventDefault()
 
-    await onLogin({
-      username,
-      password
-    })
-  }
   return (
     <div className="DefaultForm">
       <h1>Reset default password</h1>
       <Formik
-      
         initialValues={{
           username: '',
           defaultPassword: '',
           newPassword: '',
           reNewPassword: ''
         }}
-        // validate={(values) => {
-        //   const errors: Record<string, string> = {}
-        //   if (values.firstname.includes('Bob')) {
-        //     errors.firstname = 'oh no bob'
-        //   }
-        //   return errors
-        // }}
+  
         validationSchema={validationSchema}
-        onSubmit={(data, { setSubmitting, resetForm }) => {
-          setSubmitting(true)
-          //make async call
-          console.log(data)
-          setSubmitting(false)
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(async () => {
+            alert(JSON.stringify(values.username, null, 2))
+            const usernameprocess: string = values.username
+            const passwordprocess: string = values.defaultPassword
+            await onLogin({
+              email: usernameprocess,
+              password: passwordprocess,
+              newPassword: values.newPassword
+            })
+            console.log(values)
+            setSubmitting(false)
+          }, 400)
         }}
       >
         {({
@@ -79,11 +76,10 @@ const DefaultForm = ({ setCredentials, username, password }: any) => {
               as={TextField}
             />
 
-            
-              <Button disabled={isSubmitting} type="submit" color='primary'>
-                Submit
-              </Button>
-           
+            <Button disabled={isSubmitting} type="submit" color="primary">
+              Submit
+            </Button>
+
             {/* <pre>{JSON.stringify(values, null, 2)}</pre>
             <pre>{JSON.stringify(errors, null, 2)}</pre> */}
           </Form>
